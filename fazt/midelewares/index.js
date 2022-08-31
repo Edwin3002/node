@@ -1,7 +1,9 @@
-const { application } = require('express');
 const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
+
+app.use(morgan('dev'));
 
 app.use(express.text());
 app.use(express.json());
@@ -18,19 +20,19 @@ app.all('/', (req, res) =>{
 });
 
 app.get('/p', (req, res) =>{
-    res.send('profile')
+    res.send('profile');
 });
 
 app.use((req, res, next) => {
     if(req.query.login === 'ed'){
         next();
     }else{
-        res.send('Not Authorizaded')
+        res.send('Not Authorizaded');
     }
 });
 
 app.get('/dashboard', (req, res) =>{
-    res.send('dashboard page')
+    res.send('dashboard page');
 });
 
 
